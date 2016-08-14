@@ -23,8 +23,10 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import jp.miyanqii.fragmentpageradaptersample.dummy.DummyContent;
+
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ItemFragment.OnListFragmentInteractionListener{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -90,5 +92,10 @@ public class MainActivity extends BaseActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+        Snackbar.make(findViewById(R.id.toolbar),"onListFragmentInteraction: "+ item.content, Snackbar.LENGTH_SHORT).show();
     }
 }
