@@ -1,5 +1,8 @@
 package jp.miyanqii.fragmentpageradaptersample.dummy;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +56,18 @@ public class DummyContent {
     /**
      * A dummy item representing a piece of content.
      */
-    public static class DummyItem {
+    public static class DummyItem implements Parcelable {
+        public static final Creator<DummyItem> CREATOR = new Creator<DummyItem>() {
+            @Override
+            public DummyItem createFromParcel(Parcel in) {
+                return new DummyItem(in);
+            }
+
+            @Override
+            public DummyItem[] newArray(int size) {
+                return new DummyItem[size];
+            }
+        };
         public final String id;
         public final String content;
         public final String details;
@@ -62,6 +76,24 @@ public class DummyContent {
             this.id = id;
             this.content = content;
             this.details = details;
+        }
+
+        protected DummyItem(Parcel in) {
+            id = in.readString();
+            content = in.readString();
+            details = in.readString();
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(id);
+            dest.writeString(content);
+            dest.writeString(details);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
         }
 
         @Override
