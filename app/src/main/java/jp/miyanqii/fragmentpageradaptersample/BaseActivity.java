@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.squareup.picasso.Picasso;
+
 /**
  * Created by miyaki on 16/08/14.
  */
@@ -39,6 +41,9 @@ public abstract class BaseActivity extends AppCompatActivity
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
+
+        Picasso.with(this).setLoggingEnabled(true);
+        Picasso.with(this).setIndicatorsEnabled(true);
     }
 
     protected abstract void onSetContentView();

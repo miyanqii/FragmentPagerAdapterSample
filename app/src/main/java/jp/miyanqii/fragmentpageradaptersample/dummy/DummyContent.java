@@ -41,7 +41,7 @@ public class DummyContent {
     }
 
     private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
+        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position), "https://placeimg.com/640/480/any");
     }
 
     private static String makeDetails(int position) {
@@ -71,17 +71,20 @@ public class DummyContent {
         public final String id;
         public final String content;
         public final String details;
+        public final String imageSource;
 
-        public DummyItem(String id, String content, String details) {
+        public DummyItem(String id, String content, String details, String imageSource) {
             this.id = id;
             this.content = content;
             this.details = details;
+            this.imageSource = imageSource;
         }
 
         protected DummyItem(Parcel in) {
             id = in.readString();
             content = in.readString();
             details = in.readString();
+            imageSource = in.readString();
         }
 
         @Override
@@ -89,6 +92,7 @@ public class DummyContent {
             dest.writeString(id);
             dest.writeString(content);
             dest.writeString(details);
+            dest.writeString(imageSource);
         }
 
         @Override
