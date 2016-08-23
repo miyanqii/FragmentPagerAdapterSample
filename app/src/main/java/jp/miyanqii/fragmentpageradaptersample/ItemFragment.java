@@ -3,6 +3,7 @@ package jp.miyanqii.fragmentpageradaptersample;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -56,7 +57,15 @@ public class ItemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+        SwipeRefreshLayout swipeRefresh = (SwipeRefreshLayout) inflater.inflate(R.layout.fragment_item_list, container, false);
+        swipeRefresh.setEnabled(true);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                
+            }
+        });
+        View view = swipeRefresh.findViewById(R.id.list);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -69,7 +78,7 @@ public class ItemFragment extends Fragment {
             }
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
-        return view;
+        return swipeRefresh;
     }
 
 

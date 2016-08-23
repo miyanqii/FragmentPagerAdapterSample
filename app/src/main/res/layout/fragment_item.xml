@@ -42,20 +42,21 @@
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop" />
 
-                    <TextView
-                        android:id="@+id/id"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="24dp"
-                        android:textAppearance="?attr/textAppearanceListItem"
-                        android:textSize="20sp" />
                 </RelativeLayout>
             </jp.miyanqii.fragmentpageradaptersample.FixedAspectFrameLayout>
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/content"
