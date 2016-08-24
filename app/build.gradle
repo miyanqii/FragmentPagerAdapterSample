@@ -66,6 +66,8 @@ dependencies {
     //Bottom Navigation
     compile 'com.aurelhubert:ahbottomnavigation:1.3.3'
 
+
+    compile 'net.cachapa.expandablelayout:expandablelayout:2.2'
     //Mustache
 //    compile 'com.samskivert:jmustache:1.12'
 

@@ -24,19 +24,31 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 3 total pages.
-        return 3;
+        // Show 9 total pages.
+        return 9;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "SECTION 1";
+                return "歴史/史跡";
             case 1:
-                return "SECTION 2";
+                return "観る/自然スポット";
             case 2:
-                return "SECTION 3";
+                return "食べる";
+            case 3:
+                return "泊まる";
+            case 4:
+                return "遊ぶ";
+            case 5:
+                return "会う";
+            case 6:
+                return "観光イベント";
+            case 7:
+                return "ツアー";
+            case 8:
+                return "体験する";
         }
         return null;
     }

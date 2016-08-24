@@ -9,11 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
+import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.util.List;
 
@@ -40,6 +43,12 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_item, parent, false);
         return new ViewHolder(view);
+    }
+
+    @Override
+    public void onViewRecycled(ViewHolder holder) {
+        super.onViewRecycled(holder);
+        holder.mExpandableLayout.collapse();
     }
 
     @Override
@@ -75,11 +84,19 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
+            public void onClick(View view) {
+                holder.mExpandableLayout.toggle();
+            }
+        });
+
+
+        holder.mSeeDetailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.mItem, holder.mImageView);
                 }
             }
         });
@@ -96,6 +113,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public final TextView mContentView;
         public final ImageView mImageView;
         public final CardView mCardView;
+        public final ExpandableLayout mExpandableLayout;
+        public final Button mSeeDetailButton;
         public DummyItem mItem;
 
         public ViewHolder(View view) {
@@ -105,6 +124,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             mContentView = (TextView) view.findViewById(R.id.content);
             mImageView = (ImageView)view.findViewById(R.id.item_image);
             mCardView =(CardView)view.findViewById(R.id.item_card);
+            mExpandableLayout = (ExpandableLayout) view.findViewById(R.id.expandable_layout);
+            mSeeDetailButton = (Button) view.findViewById(R.id.see_detail_button);
 
         }
 

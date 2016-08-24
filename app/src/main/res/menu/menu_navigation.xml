@@ -3,26 +3,36 @@
     <item
         android:id="@+id/nav_camera"
         android:icon="@drawable/ic_menu_camera"
-        android:title="Import" />
+        android:title="観光情報" />
     <item
         android:id="@+id/nav_gallery"
         android:icon="@drawable/ic_menu_gallery"
-        android:title="Gallery" />
+        android:title="スポット検索" />
     <item
         android:id="@+id/nav_slideshow"
         android:icon="@drawable/ic_menu_slideshow"
-        android:title="Slideshow" />
+        android:title="クーポン" />
     <item
         android:id="@+id/nav_manage"
         android:icon="@drawable/ic_menu_manage"
-        android:title="Tools" />
+        android:title="イベント情報" />
 
+    <group android:id="@+id/info">
     <item
         android:id="@+id/nav_manage2"
         android:icon="@drawable/ic_menu_manage"
-        android:title="Tools" />
+        android:title="使い方" />
     <item
-        android:id="@+id/nav_manage3"
+        android:id="@+id/nav_manage4"
         android:icon="@drawable/ic_menu_manage"
-        android:title="Tools" />
+        android:title="利用規約" />
+        <item
+            android:id="@+id/nav_manage6"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="オープンソースライセンス" />
+        <item
+            android:id="@+id/nav_manage7"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="通知設定" />
+    </group>
 </menu>

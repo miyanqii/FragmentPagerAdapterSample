@@ -1,5 +1,6 @@
 package jp.miyanqii.fragmentpageradaptersample;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.NavUtils;
@@ -9,11 +10,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
@@ -28,6 +31,11 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setExitTransition(new Explode());
+        }
 
         onSetContentView();
 
@@ -61,20 +69,22 @@ public abstract class BaseActivity extends AppCompatActivity
         AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
 
 
-        if (menu.size() < 6) {
+        if (bottomNavigation != null) {
+            if (menu.size() < 6) {
 
-            AHBottomNavigationAdapter navigationAdapter = new AHBottomNavigationAdapter(this, R.menu.menu_navigation);
-            navigationAdapter.setupWithBottomNavigation(bottomNavigation, tabColors);
+                AHBottomNavigationAdapter navigationAdapter = new AHBottomNavigationAdapter(this, R.menu.menu_navigation);
+                navigationAdapter.setupWithBottomNavigation(bottomNavigation, tabColors);
 
-            //どろわーはしめとく
-            if (drawer.isDrawerOpen(GravityCompat.START)) {
-                drawer.closeDrawer(GravityCompat.START);
+                //どろわーはしめとく
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                toolbar.setNavigationIcon(null);
+            } else {
+                bottomNavigation.setEnabled(false);
+                bottomNavigation.setVisibility(View.GONE);
             }
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-            toolbar.setNavigationIcon(null);
-        } else {
-            bottomNavigation.setEnabled(false);
-            bottomNavigation.setVisibility(View.GONE);
         }
     }
 
