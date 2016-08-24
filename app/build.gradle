@@ -63,6 +63,8 @@ dependencies {
     compile 'com.github.hotchemi:permissionsdispatcher:2.1.3'
     apt 'com.github.hotchemi:permissionsdispatcher-processor:2.1.3'
 
+    //Bottom Navigation
+    compile 'com.aurelhubert:ahbottomnavigation:1.3.3'
 
     //Mustache
 //    compile 'com.samskivert:jmustache:1.12'

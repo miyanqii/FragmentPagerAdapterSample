@@ -55,6 +55,16 @@ public class ItemFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         SwipeRefreshLayout swipeRefresh = (SwipeRefreshLayout) inflater.inflate(R.layout.fragment_item_list, container, false);
@@ -62,7 +72,7 @@ public class ItemFragment extends Fragment {
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                
+
             }
         });
         View view = swipeRefresh.findViewById(R.id.list);

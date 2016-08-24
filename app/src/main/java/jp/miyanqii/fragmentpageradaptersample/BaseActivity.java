@@ -7,10 +7,16 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -44,6 +50,32 @@ public abstract class BaseActivity extends AppCompatActivity
 
         Picasso.with(this).setLoggingEnabled(true);
         Picasso.with(this).setIndicatorsEnabled(true);
+
+        MenuInflater menuInflater = getMenuInflater();
+        PopupMenu popupMenu = new PopupMenu(this, null);
+        Menu menu = popupMenu.getMenu();
+        menuInflater.inflate(R.menu.menu_navigation, menu);
+        Log.d("BaseActivity", "menu.size()=" + menu.size());
+
+        int[] tabColors = getApplicationContext().getResources().getIntArray(R.array.tab_colors);
+        AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
+
+
+        if (menu.size() < 6) {
+
+            AHBottomNavigationAdapter navigationAdapter = new AHBottomNavigationAdapter(this, R.menu.menu_navigation);
+            navigationAdapter.setupWithBottomNavigation(bottomNavigation, tabColors);
+
+            //どろわーはしめとく
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            }
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            toolbar.setNavigationIcon(null);
+        } else {
+            bottomNavigation.setEnabled(false);
+            bottomNavigation.setVisibility(View.GONE);
+        }
     }
 
     protected abstract void onSetContentView();
