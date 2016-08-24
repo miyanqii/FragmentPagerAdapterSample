@@ -1,11 +1,7 @@
 package jp.miyanqii.fragmentpageradaptersample;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
@@ -57,30 +52,37 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         holder.mIdView.setText(mValues.get(position).content);
         holder.mContentView.setText(mValues.get(position).details);
         Picasso.with(holder.mImageView.getContext()).setIndicatorsEnabled(true);
-        Picasso.with(holder.mImageView.getContext()).load(mValues.get(position).imageSource).into(holder.mImageView);
-        Picasso.with(holder.mImageView.getContext()).load(mValues.get(position).imageSource).into(new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                Palette.Swatch vibrantSwatch = Palette.from(bitmap).generate().getVibrantSwatch();
-                if (vibrantSwatch != null) {
-                    holder.mIdView.setTextColor(vibrantSwatch.getTitleTextColor());
-                    holder.mContentView.setTextColor(vibrantSwatch.getBodyTextColor());
-                    holder.mCardView.setCardBackgroundColor(vibrantSwatch.getRgb());
-                } else {
-                    Log.d(getClass().getSimpleName(), "vibrantSwatch null");
-                }
-            }
-
-            @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        });
+        Picasso.with(holder.mImageView.getContext()).load(mValues.get(position).imageSource).error(R.drawable.placeimg_640_480_nature2).into(holder.mImageView);
+//        Picasso.with(holder.mImageView.getContext()).load(mValues.get(position).imageSource).error(R.drawable.placeimg_640_480_nature2).into(new Target() {
+//            @Override
+//            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+//                Palette.Swatch vibrantSwatch = Palette.from(bitmap).generate().getVibrantSwatch();
+//                if (vibrantSwatch != null) {
+//                    holder.mIdView.setTextColor(vibrantSwatch.getTitleTextColor());
+//                    holder.mContentView.setTextColor(vibrantSwatch.getBodyTextColor());
+//                    holder.mCardView.setCardBackgroundColor(vibrantSwatch.getRgb());
+//                } else {
+//                    Log.d(getClass().getSimpleName(), "vibrantSwatch null");
+//                }
+//            }
+//
+//            @Override
+//            public void onBitmapFailed(Drawable errorDrawable) {
+//                Palette.Swatch vibrantSwatch = Palette.from(((BitmapDrawable) errorDrawable).getBitmap()).generate().getVibrantSwatch();
+//                if (vibrantSwatch != null) {
+//                    holder.mIdView.setTextColor(vibrantSwatch.getTitleTextColor());
+//                    holder.mContentView.setTextColor(vibrantSwatch.getBodyTextColor());
+//                    holder.mCardView.setCardBackgroundColor(vibrantSwatch.getRgb());
+//                } else {
+//                    Log.d(getClass().getSimpleName(), "vibrantSwatch null");
+//                }
+//            }
+//
+//            @Override
+//            public void onPrepareLoad(Drawable placeHolderDrawable) {
+//
+//            }
+//        });
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override

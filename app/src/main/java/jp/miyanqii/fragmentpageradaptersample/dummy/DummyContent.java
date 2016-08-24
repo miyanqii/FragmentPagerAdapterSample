@@ -41,7 +41,7 @@ public class DummyContent {
     }
 
     private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position), "https://placeimg.com/640/480/any");
+        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position), "https://unsplash.it/640/480?image=2" + position);
     }
 
     private static String makeDetails(int position) {
