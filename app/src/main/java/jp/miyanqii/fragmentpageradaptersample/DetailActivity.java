@@ -35,10 +35,12 @@ public class DetailActivity extends BaseActivity {
         if (intent != null) {
             DummyContent.DummyItem item = intent.getParcelableExtra(EXTRA_ITEM);
             if (item != null) {
-                getSupportActionBar().setTitle(item.content);
-                TextView textView = (TextView) findViewById(R.id.textView);
-                textView.setText(item.details);
-                ImageView imageView = (ImageView) findViewById(R.id.item_image);
+                getSupportActionBar().setTitle(item.title);
+                TextView descriptionTextView = (TextView) findViewById(R.id.description);
+                descriptionTextView.setText(item.description);
+                TextView noticeTextView = (TextView) findViewById(R.id.notice);
+                noticeTextView.setText(item.notice);
+                ImageView imageView = (ImageView) findViewById(R.id.image);
                 Picasso.with(imageView.getContext()).load(item.imageSource).into(imageView);
             }
         }

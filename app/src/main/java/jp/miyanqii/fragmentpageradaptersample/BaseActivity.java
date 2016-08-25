@@ -69,7 +69,9 @@ public abstract class BaseActivity extends AppCompatActivity
         AHBottomNavigation bottomNavigation = (AHBottomNavigation) findViewById(R.id.bottom_navigation);
 
 
+
         if (bottomNavigation != null) {
+            bottomNavigation.setForceTitlesDisplay(true);
             if (menu.size() < 6) {
 
                 AHBottomNavigationAdapter navigationAdapter = new AHBottomNavigationAdapter(this, R.menu.menu_navigation);

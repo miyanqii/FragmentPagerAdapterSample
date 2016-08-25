@@ -49,8 +49,9 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).content);
-        holder.mContentView.setText(mValues.get(position).details);
+        holder.mTitleTextView.setText(mValues.get(position).title);
+        holder.mDescriptionTextView.setText(mValues.get(position).description);
+        holder.mNoticeTextView.setText(mValues.get(position).notice);
         Picasso.with(holder.mImageView.getContext()).setIndicatorsEnabled(true);
         Picasso.with(holder.mImageView.getContext()).load(mValues.get(position).imageSource).error(R.drawable.placeimg_640_480_nature2).into(holder.mImageView);
 //        Picasso.with(holder.mImageView.getContext()).load(mValues.get(position).imageSource).error(R.drawable.placeimg_640_480_nature2).into(new Target() {
@@ -58,8 +59,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 //            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
 //                Palette.Swatch vibrantSwatch = Palette.from(bitmap).generate().getVibrantSwatch();
 //                if (vibrantSwatch != null) {
-//                    holder.mIdView.setTextColor(vibrantSwatch.getTitleTextColor());
-//                    holder.mContentView.setTextColor(vibrantSwatch.getBodyTextColor());
+//                    holder.mTitleTextView.setTextColor(vibrantSwatch.getTitleTextColor());
+//                    holder.mDescriptionTextView.setTextColor(vibrantSwatch.getBodyTextColor());
 //                    holder.mCardView.setCardBackgroundColor(vibrantSwatch.getRgb());
 //                } else {
 //                    Log.d(getClass().getSimpleName(), "vibrantSwatch null");
@@ -70,8 +71,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 //            public void onBitmapFailed(Drawable errorDrawable) {
 //                Palette.Swatch vibrantSwatch = Palette.from(((BitmapDrawable) errorDrawable).getBitmap()).generate().getVibrantSwatch();
 //                if (vibrantSwatch != null) {
-//                    holder.mIdView.setTextColor(vibrantSwatch.getTitleTextColor());
-//                    holder.mContentView.setTextColor(vibrantSwatch.getBodyTextColor());
+//                    holder.mTitleTextView.setTextColor(vibrantSwatch.getTitleTextColor());
+//                    holder.mDescriptionTextView.setTextColor(vibrantSwatch.getBodyTextColor());
 //                    holder.mCardView.setCardBackgroundColor(vibrantSwatch.getRgb());
 //                } else {
 //                    Log.d(getClass().getSimpleName(), "vibrantSwatch null");
@@ -111,8 +112,9 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView mTitleTextView;
+        public final TextView mDescriptionTextView;
+        public final TextView mNoticeTextView;
         public final ImageView mImageView;
         public final CardView mCardView;
         public final ExpandableLayout mExpandableLayout;
@@ -122,10 +124,11 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
-            mImageView = (ImageView)view.findViewById(R.id.item_image);
-            mCardView =(CardView)view.findViewById(R.id.item_card);
+            mTitleTextView = (TextView) view.findViewById(R.id.title);
+            mDescriptionTextView = (TextView) view.findViewById(R.id.description);
+            mNoticeTextView = (TextView) view.findViewById(R.id.notice);
+            mImageView = (ImageView) view.findViewById(R.id.image);
+            mCardView = (CardView) view.findViewById(R.id.card);
             mExpandableLayout = (ExpandableLayout) view.findViewById(R.id.expandable_layout);
             mSeeDetailButton = (Button) view.findViewById(R.id.see_detail_button);
 
@@ -133,7 +136,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mDescriptionTextView.getText() + "'";
         }
     }
 }

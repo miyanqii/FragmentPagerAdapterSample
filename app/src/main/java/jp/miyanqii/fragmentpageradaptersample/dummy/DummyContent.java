@@ -41,7 +41,14 @@ public class DummyContent {
     }
 
     private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position), "https://unsplash.it/640/480?image=2" + position);
+        return new DummyItem(
+                String.valueOf(position),//id
+                "1",//type
+                new Category("1", "Category1", "1"),
+                "Title" + position,
+                makeDetails(position),
+                makeDetails(position),
+                "https://unsplash.it/640/480?image=2" + position);
     }
 
     private static String makeDetails(int position) {
@@ -69,29 +76,41 @@ public class DummyContent {
             }
         };
         public final String id;
-        public final String content;
-        public final String details;
+        public final String type;
+        public final Category category;
+        public final String title;
+        public final String description;
+        public final String notice;
         public final String imageSource;
-
-        public DummyItem(String id, String content, String details, String imageSource) {
-            this.id = id;
-            this.content = content;
-            this.details = details;
-            this.imageSource = imageSource;
-        }
 
         protected DummyItem(Parcel in) {
             id = in.readString();
-            content = in.readString();
-            details = in.readString();
+            type = in.readString();
+            category = in.readParcelable(Category.class.getClassLoader());
+            title = in.readString();
+            description = in.readString();
+            notice = in.readString();
             imageSource = in.readString();
+        }
+
+        public DummyItem(String id, String type, Category category, String title, String description, String notice, String imageSource) {
+            this.id = id;
+            this.type = type;
+            this.category = category;
+            this.title = title;
+            this.description = description;
+            this.notice = notice;
+            this.imageSource = imageSource;
         }
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(id);
-            dest.writeString(content);
-            dest.writeString(details);
+            dest.writeString(type);
+            dest.writeParcelable(category, flags);
+            dest.writeString(title);
+            dest.writeString(description);
+            dest.writeString(notice);
             dest.writeString(imageSource);
         }
 
@@ -102,7 +121,16 @@ public class DummyContent {
 
         @Override
         public String toString() {
-            return content;
+            final StringBuilder sb = new StringBuilder("DummyItem{");
+            sb.append("id='").append(id).append('\'');
+            sb.append(", type='").append(type).append('\'');
+            sb.append(", category=").append(category);
+            sb.append(", title='").append(title).append('\'');
+            sb.append(", description='").append(description).append('\'');
+            sb.append(", notice='").append(notice).append('\'');
+            sb.append(", imageSource='").append(imageSource).append('\'');
+            sb.append('}');
+            return sb.toString();
         }
     }
 }
